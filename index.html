@@ -33,6 +33,12 @@
   a.btn:hover { opacity: .9; }
   footer { margin-top: 48px; color: var(--muted); font-size: .9rem; }
   footer a { color: var(--accent); }
+  p.email-fallback { font-size: .85rem; color: var(--muted); margin-top: 16px; }
+  p.email-fallback code { background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 2px 6px; }
+  p.email-fallback button {
+    background: none; border: 1px solid var(--line); color: var(--accent);
+    border-radius: 6px; padding: 3px 10px; font-size: .8rem; cursor: pointer; margin-left: 6px;
+  }
 </style>
 </head>
 <body>
@@ -48,10 +54,25 @@
       <li>Support par e-mail</li>
     </ul>
     <a class="btn" href="mailto:pjbreizh56bzh@gmail.com?subject=Achat%20-%20MEGA%20BUNDLE%20Solopreneur%20Digital%202026%20(97%E2%82%AC)&body=Bonjour%2C%0A%0AJe%20souhaite%20acheter%20le%20MEGA%20BUNDLE%20Solopreneur%20Digital%202026%20(97%E2%82%AC)%20par%20virement%20bancaire.%20Merci%20de%20m%27envoyer%20vos%20coordonn%C3%A9es%20bancaires%20(IBAN).%0A%0ACordialement.">Commander par virement →</a>
+    <p class="email-fallback">
+      Le bouton n'ouvre rien ? Écrivez à <code id="email-addr">pjbreizh56bzh@gmail.com</code>
+      <button type="button" id="copy-email">Copier</button>
+    </p>
     <footer>
       Un projet <a href="https://pjbreizh56bzh.github.io/ia-viral-site/">BZHandiBreizh</a> ·
       <a href="https://github.com/pjbreizh56bzh/bzhandibreizh-produits-numeriques#catalogue">voir le catalogue complet</a>
     </footer>
   </div>
+  <script>
+    document.getElementById('copy-email').addEventListener('click', async (e) => {
+      try {
+        await navigator.clipboard.writeText('pjbreizh56bzh@gmail.com');
+        e.target.textContent = 'Copié !';
+        setTimeout(() => (e.target.textContent = 'Copier'), 2000);
+      } catch (err) {
+        e.target.textContent = 'Sélectionnez le texte ci-dessus';
+      }
+    });
+  </script>
 </body>
 </html>
